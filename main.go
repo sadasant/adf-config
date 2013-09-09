@@ -132,7 +132,7 @@ func main() {
 	k, tok := loadLocalKeys()
 	dc := new(DynamoClient)
 	region := loadRegion()
-	dc.Url = "https://dynamodb."+region+".amazonaws.com"
+	dc.Url = "https://dynamodb." + region + ".amazonaws.com"
 	dc.Client = &aws4.Client{Keys: k}
 	dc.Token = tok
 
