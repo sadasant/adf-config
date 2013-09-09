@@ -39,8 +39,7 @@ Then be sure to boot your EC2 instances with a role that has this policy.
 ### Client Installation
 
 ```bash
-$ curl -L drone.io/github.com/ryandotsmith/adf-config/files/adf-config.tar.gz \
-  | tar xvz
+$ curl -L https://drone.io/github.com/sadasant/adf-config/files/adf-config > adf-config
 ```
 
 ## Usage
