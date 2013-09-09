@@ -50,13 +50,13 @@ func (c DynamoClient) do(target string, in, out interface{}) error {
 	return json.Unmarshal(respBody, out)
 }
 
-func list(dc *DynamoClient, app string) []string {
+func list(dc *DynamoClient, app string, table string) []string {
 	req := struct {
 		TableName      string
 		ConsistentRead bool
 		ScanFilter     AppCondition
 	}{
-		"adf-config",
+		table,
 		true,
 		AppCondition{AVList{[]ST{ST{app}}, "EQ"}},
 	}
@@ -125,6 +125,8 @@ func main() {
 	flag.BoolVar(&listCmd, "l", true, "list config")
 	var app string
 	flag.StringVar(&app, "a", "", "app name")
+	var table string
+	flag.StringVar(&table, "t", "adf-config", "table name")
 	flag.Parse()
 
 	k, tok := loadLocalKeys()
@@ -135,7 +137,7 @@ func main() {
 	dc.Token = tok
 
 	if listCmd {
-		for _, v := range list(dc, app) {
+		for _, v := range list(dc, app, table) {
 			fmt.Println(v)
 		}
 		os.Exit(0)

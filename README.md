@@ -58,3 +58,12 @@ BAZ=b
 $ adf-config -d BAZ -a x
 BAZ=b
 ```
+
+## Table Name
+
+You can change the table name by providing the `-t` argument:
+
+```
+$ adf-config -t my-table -l -a x
+```
+
